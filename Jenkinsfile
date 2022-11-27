@@ -9,7 +9,7 @@ pipeline {
         stage('Checking response code') {
             steps {
                 sh '''
-                   response=$(curl --write-out '%{http_code}' --silent --output /dev/null http://51.250.73.109:9889/)
+                   response=$(curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:9889/)
                    [[ $response == 200 ]] && echo 'page is available'
                     
                 '''
@@ -24,7 +24,7 @@ pipeline {
                     ls 
                     ls site-content
                     curl -o /dev/null -s -w "%{http_code}" http://localhost:9889
-                ''' 
+                   ''' 
             }
         } 
                 
