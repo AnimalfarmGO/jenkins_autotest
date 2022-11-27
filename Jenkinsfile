@@ -18,8 +18,9 @@ pipeline {
         stage('curl test') {
             steps {
                 sh '''
+                    cd /tmp/hash
                     curl http://localhost:9889 > index.txt
-                    md5sum index.txt site-content/index.html > hashes.txt
+                    md5sum index.txt /tmp/site-content/index.html > /tmp/hash/hashes.txt
                     md5sum --check hashes.txt
                     ls 
                     ls site-content
