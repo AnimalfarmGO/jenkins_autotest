@@ -8,9 +8,11 @@ pipeline {
         }
         stage('Checking response code') {
             steps {
-                script {
-                    def response = httpRequest 'http://localhost:9889'
-                    println("Status: "+response.status)
+                sh '''
+                   response=$(curl --write-out '%{http_code}' --silent --output /dev/null http://51.250.73.109:9889/)
+                   [[ $response == 200 ]] && echo 'page is available'
+                    
+                '''
                     }
             }
         }
